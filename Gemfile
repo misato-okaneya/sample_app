@@ -65,3 +65,4 @@ gem 'launchy'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+gem 'pry-rails', '0.3.2'

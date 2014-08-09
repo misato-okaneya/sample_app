@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
   def show
+#    binding.pry
     @user = User.find(params[:id])
   end
 
@@ -9,8 +10,10 @@ class UsersController < ApplicationController
   end
 
   def create
+#    binding.pry
     @user = User.new(user_params)
     if @user.save
+      sign_in @user
       flash[:success] = "Welcome to the Sample App!"
       redirect_to @user
     else
