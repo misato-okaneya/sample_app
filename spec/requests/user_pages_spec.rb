@@ -47,6 +47,16 @@ describe "UserPages" do
         it { should_not have_link('delete', href: user_path(admin)) }
       end
     end
+
+    describe "delete admin" do
+      let(:admin) { FactoryGirl.create(:admin) }
+
+      before { sign_in admin, no_capybara: true }
+
+      it "should not be able to delete itself directly" do
+        expect { delete user_path(admin) }.not_to change {User.count }
+      end
+    end
   end
 
   describe "profile page" do
