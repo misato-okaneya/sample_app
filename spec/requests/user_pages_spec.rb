@@ -7,8 +7,8 @@ describe "UserPages" do
   describe "index" do
     let(:user) { FactoryGirl.create(:user) }
     before do
-#      sign_in user
-#      visit users_path
+      sign_in user
+      visit users_path
     end
 
     it { should have_title('All users') }
@@ -35,26 +35,17 @@ describe "UserPages" do
         let(:admin) { FactoryGirl.create(:admin) }
         before do
           sign_in admin
-#          visit users_path
+          visit users_path
         end
 
-=begin
         it { should have_link('delete', href: user_path(User.first)) }
         it "should be able to delete another user" do
           expect do
             click_link('delete', match: :first) 
           end.to change(User, :count).by(-1)
         end
-=end
 
         it { should_not have_link('delete', href: user_path(admin)) }
-        it "should not be able to delete itself" do
-          expect do
-binding.pry
-            delete user_path(admin)
-#            click_link('delete', match: :admin)
-          end.not_to change(User, :count)
-        end
       end
     end
 
@@ -64,17 +55,26 @@ binding.pry
       before { sign_in admin, no_capybara: true }
 
       it "should not be able to delete itself directly" do
-        expect { delete user_path(admin) }.not_to change {User.count }
+        expect { delete user_path(admin) }.not_to change { User.count }
       end
     end
   end
 
   describe "profile page" do
     let(:user){ FactoryGirl.create(:user) }
+    let!(:m1) { FactoryGirl.create(:micropost, user: user, content: "Foo") }
+    let!(:m2) { FactoryGirl.create(:micropost, user: user, content: "Bar") }
+
     before { visit user_path(user) }
 
     it { should have_content(user.name) }
     it { should have_title(user.name) }
+
+    describe "microposts" do
+      it { should have_content(m1.content) }
+      it { should have_content(m2.content) }
+      it { should have_content(user.microposts.count) }
+    end
   end
   
   describe "signup page" do
