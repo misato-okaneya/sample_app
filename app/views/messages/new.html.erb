@@ -1,0 +1,10 @@
+<h3>Send a message to <%= @target.name %></h3>
+<%= form_for(@message, url: :messages, method: :post) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+    <%= f.text_area :body, placeholder: "Compose new message..." %>
+    <%= hidden_field_tag 'target_id',@target.id %>
+  </div>
+  <%= f.submit "Send", class: "btn btn-large btn-primary" %>
+<% end %>
+

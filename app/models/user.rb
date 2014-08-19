@@ -13,6 +13,9 @@ class User < ActiveRecord::Base
   has_secure_password
   validates :password, length: { minimum: 6 }
 
+  acts_as_messageable required: :body
+#  validates :body, presence: true, length: { minimum: 1 }
+
   def User.new_remember_token
     SecureRandom.urlsafe_base64
   end

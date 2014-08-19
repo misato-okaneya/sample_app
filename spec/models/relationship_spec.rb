@@ -26,4 +26,5 @@ describe Relationship do
     before { relationship.follower_id = nil }
     it { should_not be_valid }
   end
+
 end

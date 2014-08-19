@@ -10,6 +10,14 @@
             <li><%= link_to "Users", users_path %></li>
             <li id="fat-menu" class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Messages <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                <li><%= link_to "New message", messages_users_list_path %></li>
+                <li><%= link_to "Inbox", messages_path %></li>
+              </ul>
+            <li id="fat-menu" class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 Account <b class="caret"></b>
               </a>
               <ul class="dropdown-menu">

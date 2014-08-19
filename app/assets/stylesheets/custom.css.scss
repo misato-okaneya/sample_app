@@ -238,3 +238,25 @@ aside {
     margin-bottom: 5px;
   }
 }
+
+/* Messages */
+
+.messages {
+	list-style: none;
+	margin: 0;
+	li {
+		overflow: auto;
+		padding: 10px 0;
+		border-top: 1px solid $grayLighter;
+		&:last-child { 
+			border-bottom: 1px solid $grayLighter;
+		}
+	}
+}
+.contentm {
+  display: block;
+	font-size: 1.7em;
+}
+.self {
+	background-color: #A9D0F5;
+}
